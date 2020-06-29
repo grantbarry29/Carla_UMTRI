@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import *
 import tkinter.font as tkfont
-import os
     
 class GUI(tk.Tk):
     def __init__(self):
@@ -15,7 +14,7 @@ class GUI(tk.Tk):
         if self._frame is not None:
             self._frame.destroy()
         self._frame = new_frame
-        self._frame.grid()
+        self._frame.pack()
         
 
     
@@ -28,7 +27,6 @@ class StartPage(tk.Frame):
         width = self.winfo_screenwidth()
         height =  self.winfo_screenheight()
         container = tk.Frame(self, width = width, height = height)
-        container.grid_propagate(False)
         container.pack()        
         
         #page text and buttons
@@ -40,6 +38,7 @@ class StartPage(tk.Frame):
                   command=lambda: master.switch_frame(PageTwo)).place(relx = .60, rely = .6, anchor = CENTER, width = 180, height = 60)
 
 
+
 class PageOne(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -48,7 +47,6 @@ class PageOne(tk.Frame):
         width = self.winfo_screenwidth()
         height =  self.winfo_screenheight()
         container = tk.Frame(self, width = width, height = height)
-        container.grid_propagate(False)
         container.pack()
         container['bg'] = 'white'
 
@@ -93,24 +91,49 @@ class PageOne(tk.Frame):
         tk.Button(container, text = "Edit Sections", font=('Helvetica', 16)).place(relx = 0.053, rely = 0.60)
 
 
-        ######sections images#####
-        road1 = PhotoImage(file = "/Users/gbarry/desktop/UMTRI/tk/road.gif")
-        road1 = road1.subsample(2,2)
+        ######sections##### 
+
+        #road images
+        tk.Frame(container, bg="grey77").place(relx = 0.34, rely = 0.07, relwidth = 0.64, relheight = 0.82)
+        road1 = PhotoImage(file = "road.gif")
+        road1 = road1.subsample(1,1)
         map1 = Label(container, image=road1)
         map1.image = road1
-        map1.place(relx = 0.5, rely = 0.3)
+        map1.place(relx = 0.36, rely = 0.1)
         map2 = Label(container, image=road1)
         map2.image = road1
-        map2.place(relx = 0.56, rely = 0.3)
+        map2.place(relx = 0.48, rely = 0.1)
         map3 = Label(container, image=road1)
         map3.image = road1
-        map3.place(relx = 0.62, rely = 0.3)
+        map3.place(relx = 0.60, rely = 0.1)
         map4 = Label(container, image=road1)
         map4.image = road1
-        map4.place(relx = 0.68, rely = 0.3)
+        map4.place(relx = 0.72, rely = 0.1)
         map5 = Label(container, image=road1)
         map5.image = road1
-        map5.place(relx = 0.74, rely = 0.3)
+        map5.place(relx = 0.84, rely = 0.1)
+        
+
+        #square label buttons on top of roads
+        button_text = [1,2,3,4,5]
+        Button(container,text = button_text[0], fg="red", bg="red").place(relx = 0.405, rely = 0.44, relwidth = 0.03, relheight = 0.03)
+        Button(container,text = button_text[1], fg="red", bg="red").place(relx = 0.525, rely = 0.44, relwidth = 0.03, relheight = 0.03)
+        Button(container,text = button_text[2], fg="red", bg="red").place(relx = 0.645, rely = 0.44, relwidth = 0.03, relheight = 0.03)
+        Button(container,text = button_text[3], fg="red", bg="red").place(relx = 0.765, rely = 0.44, relwidth = 0.03, relheight = 0.03)
+        Button(container,text = button_text[4], fg="red", bg="red").place(relx = 0.885, rely = 0.44, relwidth = 0.03, relheight = 0.03)
+
+
+
+        #####Map Container#####
+        container2 = tk.Frame(self, width = width, height = height)
+        container2["bg"] = "red"
+        container2.pack()
+        container2.tkraise()
+        
+        
+
+        
+        
 
 
 class PageTwo(tk.Frame):
@@ -163,24 +186,6 @@ class PageTwo(tk.Frame):
         tk.Button(container, text = "Edit Sections", font=('Helvetica', 16)).place(relx = 0.053, rely = 0.54)
 
 
-        ######sections images#####
-        road1 = PhotoImage(file = "/Users/gbarry/desktop/UMTRI/tk/road.gif")
-        road1 = road1.subsample(2,2)
-        map1 = Label(container, image=road1)
-        map1.image = road1
-        map1.place(relx = 0.5, rely = 0.3)
-        map2 = Label(container, image=road1)
-        map2.image = road1
-        map2.place(relx = 0.56, rely = 0.3)
-        map3 = Label(container, image=road1)
-        map3.image = road1
-        map3.place(relx = 0.62, rely = 0.3)
-        map4 = Label(container, image=road1)
-        map4.image = road1
-        map4.place(relx = 0.68, rely = 0.3)
-        map5 = Label(container, image=road1)
-        map5.image = road1
-        map5.place(relx = 0.74, rely = 0.3)
 if __name__ == "__main__":
     gui = GUI()
     gui.mainloop()
